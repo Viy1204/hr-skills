@@ -1,6 +1,6 @@
 # hr-skills
 
-通用 HR 业务场景的 Agent Skills 集合。每个 skill 都是基于真实招聘 / 组织管理 / HR 自动化工作流打磨的、可被 Claude Code（以及兼容 Agent Skills 规范的工具）直接加载使用的工具。
+通用 HR 业务场景的 Agent Skills 集合。每个 skill 都是基于真实招聘 / 组织管理 / HR 自动化工作流打磨的、可被兼容 [Agent Skills 规范](https://agentskills.io) 的 AI Agent 直接加载使用的工具。
 
 ## 收录的 Skills
 
@@ -12,20 +12,47 @@
 
 ## 什么是 Agent Skill
 
-Anthropic 的开放仓库 [anthropics/skills](https://github.com/anthropics/skills) 定义 skill 为**包含 `SKILL.md` 的文件夹**（YAML frontmatter + 正文）。跨工具的规范见 [agentskills.io](https://agentskills.io)。本仓库的每个 skill 都遵循同样的 frontmatter + body 模式，可在 Claude Code、Cursor、Claude Code plugins 以及其他 Agent Skills host 中复用。
+Anthropic 的开放仓库 [anthropics/skills](https://github.com/anthropics/skills) 定义 skill 为**包含 `SKILL.md` 的文件夹**（YAML frontmatter + 正文）。跨工具的统一规范见 [agentskills.io](https://agentskills.io)。本仓库的每个 skill 都遵循同样的 frontmatter + body 模式。
 
-## 安装方式
+### 兼容的 Agent
 
-### Claude Code / 兼容工具
+由于遵循通用规范，本仓库的 skill 适用于任何实现了 Agent Skills 加载机制的 AI Agent，覆盖但不限于：
 
-将整个 `skills/<skill-name>/` 目录复制或软链到你的 skills 目录：
+- **Claude Code**（Anthropic）
+- **Codex CLI / Codex IDE**（OpenAI）
+- **Pi**
+- **OpenCode**
+- **MiniMax Code**
+- **WorkBuddy**
+- **Cherry Studio**（在其「Skills / 插件」目录加载即可）
 
-- 全局：`~/.claude/skills/<skill-name>/`
-- 项目内：`<your-project>/.claude/skills/<skill-name>/`
+具体到某款 agent 的安装路径可能略有不同（见下表），但 skill 文件本身是同一份 `SKILL.md`，**不需要为不同 agent 维护多份副本**。
 
-复制后重启 Claude Code，skill 会自动出现在可用技能列表中。
+## 安装
 
-### 单独克隆一个 skill
+### 方式一：直接复制给你的 AI Agent（推荐）
+
+把下面这段话直接发给支持 Agent Skills 的 AI Agent，让它帮你装：
+
+```
+请帮我安装这个仓库里的所有 skill：https://github.com/Viy1204/hr-skills
+具体做法：把仓库的 skills/<skill-name>/ 目录复制到本机的 agent skills 目录，
+并按你所在平台的约定完成注册。装完后请告诉我装到了哪、有没有依赖需要补装。
+```
+
+Agent 会自行决定：放在全局还是项目内、是否需要软链、是否需要装 npm 全局依赖（如 `@joohw/boss-cli`、`@viyzhu/liepin-cli`）。
+
+### 方式二：自己手动安装
+
+把 `skills/<skill-name>/` 目录复制到你的 agent skills 目录：
+
+- **Claude Code**：全局 `~/.claude/skills/<skill-name>/`，项目内 `<your-project>/.claude/skills/<skill-name>/`
+- **Codex CLI**：参考 [codex skills 文档](https://github.com/openai/codex) 的 skills 加载路径
+- **Pi / OpenCode / MiniMax Code / WorkBuddy / Cherry Studio**：参见各自文档中的 "skills 目录" 一节
+
+复制后重启 agent，skill 会自动出现在可用技能列表中。
+
+### 方式三：只克隆某一个 skill
 
 ```bash
 # 例子：只克隆 boss-cli
