@@ -7,6 +7,7 @@
 | Skill | 适用场景 | 来源 |
 |---|---|---|
 | [`boss-cli`](skills/boss-cli) | Boss 直聘（zhipin.com）聊天 / 打招呼 / 在线简历 / OCR | [@joohw/boss-cli](https://www.npmjs.com/package/@joohw/boss-cli) |
+| [`feishu-attendance-analyzer`](skills/feishu-attendance-analyzer) | 飞书全员考勤分析：平均下班排行 / 加班异常预警 / 部门对比，输出终端 + Excel + 可视化 HTML | 飞书 attendance 统计 API |
 | [`feishu-org-chart`](skills/feishu-org-chart) | 飞书通讯录拉部门树 + 飞书画板渲染组织架构图 | 飞书 contact API + dagre + 画板 DSL |
 | [`feishu-roster`](skills/feishu-roster) | 飞书人事(标准版)实时拉员工花名册（含入职/转正/试用期/部门/上级），导出 Excel + JSON | 飞书 ehr API + contact API |
 | [`liepin-cli`](skills/liepin-cli) | 猎聘（liepin.com）人才搜索 / 简历 / 打招呼 / 聊天 | [@viyzhu/liepin-cli](https://www.npmjs.com/package/@viyzhu/liepin-cli) |
